@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.sleepvolume'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.sleepvolume"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            // 方便直接拿 debug 包装机
+        }
+        release {
+            minifyEnabled false
+            // 自用场景直接用 debug 签名，省掉自己建 keystore 的步骤。
+            // 如果要分发，请换成自己的 signingConfig。
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
